@@ -16,3 +16,5 @@ Ilmoittautuneiden luettelo
 Varauksen peruutus yrityksen toimesta, jos maksua ei ole maksettu  
 Varauksen peruutus asiakkaan toimesta  
 Kurssin peruutus  
+  
+[heroku](https://tsoha-kurssitarjonta-ja-varaus.herokuapp.com/)
