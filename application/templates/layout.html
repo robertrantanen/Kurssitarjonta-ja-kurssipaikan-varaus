@@ -6,10 +6,15 @@
   </head>
 
   <body>
-    {% block body %}
+      <ul>
+	      <li><a href="{{ url_for('kurssit_index') }}">Listaa kurssit</a></li>
+	      <li><a href="{{ url_for('kurssit_form') }}">Lisää kurssi</a></li>
+      </ul>
+      
+      {% block body %}
       <p>
-        Content.
+	      Content.
       </p>
-    {% endblock %}
-  </body>
+      {% endblock %}
+    </body>
 </html>

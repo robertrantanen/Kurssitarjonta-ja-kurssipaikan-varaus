@@ -1,6 +1,10 @@
 from application import app, db
-from flask import render_template, request
+from flask import redirect, render_template, request, url_for
 from application.kurssit.models import Kurssi
+
+@app.route("/kurssit", methods=["GET"])
+def kurssit_index():
+    return render_template("kurssit/list.html", kurssit = Kurssi.query.all())
 
 @app.route("/kurssit/new/")
 def kurssit_form():
@@ -13,5 +17,5 @@ def kurssit_create():
     db.session().add(k)
     db.session().commit()
   
-    return "hello world!"
+    return redirect(url_for("kurssit_index"))
 
