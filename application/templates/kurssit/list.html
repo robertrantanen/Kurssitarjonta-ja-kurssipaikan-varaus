@@ -4,10 +4,17 @@
   <table>
     <tr>
       <th>Kurssi</th>
+      <th>varattu</th>
     </tr>
     {% for kurssi in kurssit %}
     <tr>
       <td>{{ kurssi.nimi }}</td>
+      <td>{{ kurssi.varattu }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('kurssit_set_varattu', kurssi_id=kurssi.id) }}">
+          <input type="submit" value="Varaa kurssi!"/>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>
