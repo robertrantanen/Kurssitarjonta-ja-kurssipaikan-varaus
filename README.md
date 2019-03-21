@@ -17,4 +17,9 @@ Varauksen peruutus yrityksen toimesta, jos maksua ei ole maksettu
 Varauksen peruutus asiakkaan toimesta  
 Kurssin peruutus  
   
-[heroku](https://tsoha-kurssitarjonta-ja-varaus.herokuapp.com/)
+[Heroku](https://tsoha-kurssitarjonta-ja-varaus.herokuapp.com/)
+
+[Käyttötapauksia](https://github.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/blob/master/documentation/k%C3%A4ytt%C3%B6tapaukset.md)
+
+[Tietokantakaavio](https://raw.githubusercontent.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/master/documentation/Tietokantakaavio.jpg)
+
