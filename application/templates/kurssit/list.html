@@ -4,15 +4,21 @@
   <table>
     <tr>
       <th>Kurssi</th>
+      <th>Aika</th>
+      <th>Paikka</th>
+      <th>Maksimikoko</th>
       <th>varattu</th>
     </tr>
     {% for kurssi in kurssit %}
     <tr>
       <td>{{ kurssi.nimi }}</td>
+      <td>{{ kurssi.aika }}</td>
+      <td>{{ kurssi.paikka }}</td>
+      <td>{{ kurssi.maksimikoko }}</td>
       <td>{{ kurssi.varattu }}</td>
       <td>
         <form method="POST" action="{{ url_for('kurssit_set_varattu', kurssi_id=kurssi.id) }}">
-          <input type="submit" value="Varaa kurssi!"/>
+          <input type="submit" value="Varaa kurssi"/>
         </form>
       </td>
     </tr>

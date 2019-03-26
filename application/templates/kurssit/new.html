@@ -1,8 +1,44 @@
 {% extends "layout.html" %}
-  
+
 {% block body %}
 <form method="POST" action="{{ url_for('kurssit_create') }}">
-  <input type="text" name="nimi"/>
-  <input type="submit" value="lisää kurssi"/>
+  <table>
+    <tr>
+      <td>
+        {{ form.nimi.label }}
+      </td>
+      <td>
+        {{ form.nimi }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.aika.label }}
+      </td>
+      <td>
+        {{ form.aika }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.paikka.label }}
+      </td>
+      <td>
+        {{ form.paikka }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {{ form.maksimikoko.label }}
+      </td>
+      <td>
+        {{ form.maksimikoko }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Lisää kurssi"/>
+      </td>
+    </tr>
 </form>
 {% endblock %}
