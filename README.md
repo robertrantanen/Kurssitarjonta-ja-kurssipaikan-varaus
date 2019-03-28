@@ -2,7 +2,7 @@
 
 Esimerkkiaihe materiaalista, hieman rajattu.  
   
-Kurssikeskus Opinahjo järjestää maksullisia kursseja eri aihepiireistä. Yhteen aihepiiriin liittyen pidetään vuodessa 1-20 kurssia. Sama kurssin voidaan vuoden aikana järjestää useaan kertaan. Kursseille voi osallistua keskimäärin 20 opiskelijaa, mutta isoja yli sadankin hengen kursseja on joskus ohjelmassa. Kuka tahansa voi tutkia kurssitietoja ja ilmoittautua kurssille. Kurssin varaus voidaan kuitenkin peruuttaa jos kuvitteellista maksua ei olla maksettu, mutta tähän ei keskitytä sen enempää.  
+Kurssikeskus Opinahjo järjestää maksullisia kursseja eri aihepiireistä. Yhteen aihepiiriin liittyen pidetään vuodessa 1-20 kurssia. Sama kurssi voidaan vuoden aikana järjestää useaan kertaan. Kursseille voi osallistua keskimäärin 20 opiskelijaa, mutta isoja yli sadankin hengen kursseja on joskus ohjelmassa. Kuka tahansa voi tutkia kurssitietoja ja ilmoittautua kurssille. Kurssin varaus voidaan kuitenkin peruuttaa jos kuvitteellista maksua ei olla maksettu, mutta tähän ei keskitytä sen enempää.  
   
 Toimintoja:  
   
