@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 
-class TaskForm(FlaskForm):
+class KurssiForm(FlaskForm):
     nimi = StringField("Kurssin nimi")
     aika = StringField("Kurssin ajankohta")
     paikka = StringField("Kurssin paikka")
