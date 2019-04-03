@@ -21,6 +21,11 @@
           <input type="submit" value="Varaa kurssi"/>
         </form>
       </td>
+      <td> 
+        <form method="POST" action="{{ url_for('kurssit_delete', kurssi_id=kurssi.id)}}">
+            <input type="submit" value="Poista kurssi"/>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>

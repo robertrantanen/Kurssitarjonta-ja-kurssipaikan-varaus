@@ -33,3 +33,12 @@ def kurssit_create():
   
     return redirect(url_for("kurssit_index"))
 
+@app.route("/kurssit/delete/<kurssi_id>/", methods=["POST"])
+def kurssit_delete(kurssi_id):
+    k = Kurssi.query.get(kurssi_id)
+
+    if k:
+        db.session().delete(k)
+        db.session().commit()
+  
+    return redirect(url_for("kurssit_index"))
