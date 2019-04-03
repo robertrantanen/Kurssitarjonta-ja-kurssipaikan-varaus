@@ -11,11 +11,13 @@ def auth_login():
         return render_template("auth/loginform.html", form = LoginForm())
 
     form = LoginForm(request.form)
+    if not form.validate():
+        return render_template("auth/loginform.html", form = form)
 
     user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
     if not user:
         return render_template("auth/loginform.html", form = form,
-                                error = "No such username or password")
+                                error = "Väärät käyttäjätunnukset")
 
 
     login_user(user)
@@ -33,8 +35,11 @@ def auth_form():
 @app.route("/auth/", methods=["POST"])
 def auth_create():
     form = RegisterForm(request.form)
-    u = User(request.form.get("username"), "")
-    u.password = form.password.data
+
+    if not form.validate():
+        return render_template("auth/new.html", form = form)
+
+    u = User(form.username.data, form.password.data) 
 
     db.session().add(u)
     db.session().commit()
