@@ -2,7 +2,8 @@ from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.kurssit.models import Kurssi
 from application.kurssit.forms import KurssiForm
-from flask_login import login_required
+from flask_login import login_required, current_user
+from application.varaus.models import Varaus
 
 @app.route("/kurssit", methods=["GET"])
 def kurssit_index():
@@ -17,8 +18,10 @@ def kurssit_form():
 @login_required
 def kurssit_set_varattu(kurssi_id):
 
-    k = Kurssi.query.get(kurssi_id)
-    k.varattu = True
+    v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
+
+    db.session().add(v)
+
     db.session().commit()
   
     return redirect(url_for("kurssit_index"))    
@@ -47,3 +50,8 @@ def kurssit_delete(kurssi_id):
         db.session().commit()
   
     return redirect(url_for("kurssit_index"))
+
+@app.route('/kurssit/varaukset')
+@login_required
+def kurssit_varaukset():
+    return render_template("kurssit/varaukset.html", kurssit=Kurssi.loyda_kayttajan_kurssit())
