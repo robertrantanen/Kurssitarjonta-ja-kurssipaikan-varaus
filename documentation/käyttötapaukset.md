@@ -1,8 +1,8 @@
 ### Käyttötapauksia
 -Käyttäjä voi lisätä uuden kurssin parametreilla nimi, aika, paikka ja ilmoittautuneiden maksimimäärä.  
--Käyttäjä voi listata kaikki kurssit  
+-Käyttäjä voi listata kaikki kurssit. Tämän voi tehdä ilman kirjautumista, mutta muihin toimintoihin tarvii kirjautumisen.  
 -Käyttäjä voi kirjautua.  
--Käyttäjä voi luoda uuden käyttäjätunnuksen.  
+-Käyttäjä voi luoda uuden käyttäjätunnuksen. Rekisteröinnissä on salasanan vahvistus.  
 -Käyttäjä voi varata kurssin. Varaukset ovat käyttäjäkohtaisia. Sovellus heittää erroria paikallisesti jos sama kurssi yritetään varata uudestaan, mutta herokussa tulee vain uusi varaus samalle kurssille, mikä ei myöskään ole kovin mielekästä.  
 -Käyttäjä voi tarkastella varauksiaan.  
 -Käyttäjä voi poistaa kurssin. Paikallisesti sovellus heittää erroria tästä, mutta herokussa toimii.
