@@ -29,9 +29,9 @@
       </ul>
       <div class="form-inline mt-2 mt-md-0">
         {% if current_user.is_authenticated %}
-        Kirjautunut nimellä {{ current_user.username }}__ <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+        Kirjautunut nimellä {{ current_user.username }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
         {% else %}
-        <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a>__
+        <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a>.
         <a href="{{ url_for('auth_form') }}">Luo käyttäjä</a>
         {% endif %}
       </div>
