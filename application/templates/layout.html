@@ -24,7 +24,9 @@
           <a class="nav-link" href="{{ url_for('kurssit_form') }} ">Lisää kurssi</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('kurssit_varaukset') }} ">Listaa varaukset</a>
+          {% if current_user.is_authenticated %}
+          <a class="nav-link" href="{{ url_for('varaus_index') }} ">Listaa varaukset</a>
+          {% endif %}
         </li>
       </ul>
       <div class="form-inline mt-2 mt-md-0">

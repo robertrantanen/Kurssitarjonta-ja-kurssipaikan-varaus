@@ -51,7 +51,4 @@ def kurssit_delete(kurssi_id):
   
     return redirect(url_for("kurssit_index"))
 
-@app.route('/kurssit/varaukset')
-@login_required
-def kurssit_varaukset():
-    return render_template("kurssit/varaukset.html", kurssit=Kurssi.loyda_kayttajan_kurssit())
+

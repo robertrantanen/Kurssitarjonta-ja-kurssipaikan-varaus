@@ -20,15 +20,4 @@ class Kurssi(Base):
     def __init__(self, nimi):
         self.nimi = nimi
 
-    @staticmethod
-    def loyda_kayttajan_kurssit():
-        stmt = text("SELECT Kurssi.nimi, Kurssi.aika, Kurssi.paikka FROM Kurssi"
-                     " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
-                     " WHERE (Varaus.account_id = :id)").params(id=current_user.id)
-        res = db.engine.execute(stmt)
 
-        response = []
-        for row in res:
-            response.append({"nimi":row[0], "aika":row[1], "paikka":row[2]})
-
-        return response
