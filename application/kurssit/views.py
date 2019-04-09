@@ -18,11 +18,12 @@ def kurssit_form():
 @login_required
 def kurssit_set_varattu(kurssi_id):
 
-    v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
+    varaukset = Varaus.loyda_onko_varaus_jo_olemassa(kurssi=kurssi_id)
 
-    db.session().add(v)
-
-    db.session().commit()
+    if len(varaukset) == 0:
+        v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
+        db.session().add(v)
+        db.session().commit()
   
     return redirect(url_for("kurssit_index"))    
 
@@ -44,10 +45,9 @@ def kurssit_create():
 @login_required
 def kurssit_delete(kurssi_id):
     k = Kurssi.query.get(kurssi_id)
-
-    if k:
-        db.session().delete(k)
-        db.session().commit()
+    
+    db.session().delete(k)
+    db.session().commit()
   
     return redirect(url_for("kurssit_index"))
 
