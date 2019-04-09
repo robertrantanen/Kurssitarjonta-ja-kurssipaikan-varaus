@@ -1,20 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
-{% if kurssit is defined %}
-<p>
-  Kurssit:
-</p>
-
-<ul>
-  {% for kurssi in kurssit %}
-  <li>
-    {{kurssi.nimi}} {{kurssi.aika}} {{kurssi.paikka}}
-  </li>
-  {% endfor %}
-</ul>
-
-{% endif %}
-
+  <table>
+    <tr>
+      <p>
+        Kurssit:
+      </p>
+    </tr>
+    <tr>
+      <th>Kurssi</th>
+      <th>Aika</th>
+      <th>Paikka</th>
+    </tr>
+    {% for kurssi in kurssit %}
+    <tr>
+      <td>{{ kurssi.nimi }}</td>
+      <td>{{ kurssi.aika }}</td>
+      <td>{{ kurssi.paikka }}</td>
+    </tr>
+    {% endfor %}
+  </table>
 {% endblock %}
