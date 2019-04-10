@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_login import current_user
 app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy

@@ -1,17 +1,17 @@
-from application import app, db
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 from application.varaus.models import Varaus
 from application.kurssit.models import Kurssi
 from application.auth.models import User
 
 @app.route("/varaukset", methods=["GET"])
-@login_required
+@login_required(role="NORMAL")
 def varaus_index():
     return render_template("varaus/list.html", kurssit = Varaus.loyda_kayttajan_kurssit())
 
 @app.route("/varaukset/delete/<kurssi_id>/", methods=["POST"])
-@login_required
+@login_required(role="NORMAL")
 def varaus_delete(kurssi_id):
     v = Varaus.query.filter_by(account_id=current_user.id, kurssi_id=kurssi_id).first()
 

@@ -1,8 +1,8 @@
-from application import app, db
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
 from application.kurssit.models import Kurssi
 from application.kurssit.forms import KurssiForm
-from flask_login import login_required, current_user
+from flask_login import current_user
 from application.varaus.models import Varaus
 
 @app.route("/kurssit", methods=["GET"])
@@ -10,12 +10,12 @@ def kurssit_index():
     return render_template("kurssit/list.html", kurssit = Kurssi.query.all())
 
 @app.route("/kurssit/new/")
-@login_required
+@login_required(role="ADMIN")
 def kurssit_form():
     return render_template("kurssit/new.html", form = KurssiForm())
 
 @app.route("/kurssit/<kurssi_id>/", methods=["POST"])
-@login_required
+@login_required(role="NORMAL")
 def kurssit_set_varattu(kurssi_id):
 
     varaukset = Varaus.loyda_onko_varaus_jo_olemassa(kurssi=kurssi_id)
@@ -28,7 +28,7 @@ def kurssit_set_varattu(kurssi_id):
     return redirect(url_for("kurssit_index"))    
 
 @app.route("/kurssit/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def kurssit_create():
     form = KurssiForm(request.form)
 
@@ -46,7 +46,7 @@ def kurssit_create():
     return redirect(url_for("kurssit_index"))
 
 @app.route("/kurssit/delete/<kurssi_id>/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def kurssit_delete(kurssi_id):
     k = Kurssi.query.get(kurssi_id)
     
