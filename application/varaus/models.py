@@ -8,10 +8,10 @@ from flask_login import current_user
 from sqlalchemy.sql import text
 
 
-class Varaus(Base):
+class Varaus(db.Model):
     __tablename__ = 'varaus'
-    account_id = Column(Integer, ForeignKey('account.id'))
-    kurssi_id = Column(Integer, ForeignKey('kurssi.id'))
+    account_id = Column(Integer, ForeignKey('account.id'), primary_key=True)
+    kurssi_id = Column(Integer, ForeignKey('kurssi.id'), primary_key=True)
 
     account = relationship('User', backref=db.backref('account'))
     kurssi = relationship('Kurssi', backref=db.backref('kurssi'))

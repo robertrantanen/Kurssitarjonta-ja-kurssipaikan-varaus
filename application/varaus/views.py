@@ -13,7 +13,7 @@ def varaus_index():
 @app.route("/varaukset/delete/<kurssi_id>/", methods=["POST"])
 @login_required
 def varaus_delete(kurssi_id):
-    v = Varaus.query.filter_by(account_id=current_user.id, kurssi_id=kurssi_id)
+    v = Varaus.query.filter_by(account_id=current_user.id, kurssi_id=kurssi_id).first()
 
     db.session().delete(v)
     db.session().commit()
