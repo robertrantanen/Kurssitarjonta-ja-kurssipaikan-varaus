@@ -24,9 +24,14 @@ class Varaus(db.Model):
                      " WHERE (Varaus.account_id = :id)").params(id=current_user.id)
         res = db.engine.execute(stmt)
 
-        #response = []
-        #for row in res:
-        #    response.append({"nimi":row[0], "aika":row[1], "paikka":row[2]}, "id":row[3])
+        return res
+
+    @staticmethod
+    def loyda_kurssin_varaukset(kurssi=0):
+        stmt = text("SELECT * FROM Kurssi"
+                     " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
+                     " WHERE (Varaus.kurssi_id = :id)").params(id=kurssi)
+        res = db.engine.execute(stmt)
 
         return res
 

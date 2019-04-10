@@ -48,6 +48,14 @@ def kurssit_create():
 @app.route("/kurssit/delete/<kurssi_id>/", methods=["POST"])
 @login_required(role="ADMIN")
 def kurssit_delete(kurssi_id):
+
+    varaukset = Varaus.loyda_kurssin_varaukset(kurssi_id)
+
+    for v in varaukset:
+        varaus = Varaus.query.filter_by(kurssi_id=kurssi_id).first()
+        db.session().delete(varaus)
+        db.session().commit()
+
     k = Kurssi.query.get(kurssi_id)
     
     db.session().delete(k)
