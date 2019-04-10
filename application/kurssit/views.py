@@ -31,6 +31,10 @@ def kurssit_set_varattu(kurssi_id):
 @login_required
 def kurssit_create():
     form = KurssiForm(request.form)
+
+    if not form.validate():
+        return render_template("kurssit/new.html", form = form)
+
     k = Kurssi(request.form.get("nimi"))
     k.aika = form.aika.data
     k.paikka = form.paikka.data

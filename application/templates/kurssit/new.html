@@ -10,6 +10,13 @@
       <td>
         {{ form.nimi }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.nimi.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -17,6 +24,13 @@
       </td>
       <td>
         {{ form.aika }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.aika.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
       </td>
     </tr>
     <tr>
@@ -26,6 +40,13 @@
       <td>
         {{ form.paikka }}
       </td>
+      <td>
+        <ul>
+          {% for error in form.paikka.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
     <tr>
       <td>
@@ -33,6 +54,13 @@
       </td>
       <td>
         {{ form.maksimikoko }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.maksimikoko.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
       </td>
     </tr>
     <tr>
