@@ -1,7 +1,13 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if current_user.is_authenticated %}
+<p>
+  Tervetuloa {{ current_user.username }}!
+</p>
+{% else %}
 <p>
   Tervetuloa!
 </p>
+{% endif %}
 {% endblock %}
