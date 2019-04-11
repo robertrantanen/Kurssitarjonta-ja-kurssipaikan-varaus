@@ -1,17 +1,17 @@
 ### Käyttötapauksia
--Käyttäjä voi lisätä uuden kurssin parametreilla nimi, aika, paikka ja ilmoittautuneiden maksimimäärä.  
--Käyttäjä voi listata kaikki kurssit. Tämän voi tehdä ilman kirjautumista, mutta muihin toimintoihin tarvii kirjautumisen.  
+-Käyttäjä voi listata kaikki kurssit. Tämän voi tehdä ilman kirjautumista, mutta muihin toimintoihin tarvii kirjautumisen.   
+-Käyttäjä voi luoda uuden käyttäjätunnuksen. Rekisteröinnissä voi valita tekeekö normaalin vai admin-käyttäjän.  
 -Käyttäjä voi kirjautua.  
--Käyttäjä voi luoda uuden käyttäjätunnuksen. Rekisteröinnissä on salasanan vahvistus.  
--Käyttäjä voi varata kurssin. Varaukset ovat käyttäjäkohtaisia. Sovellus heittää erroria paikallisesti jos sama kurssi yritetään varata uudestaan, mutta herokussa tulee vain uusi varaus samalle kurssille, mikä ei myöskään ole kovin mielekästä.  
--Käyttäjä voi tarkastella varauksiaan.  
--Käyttäjä voi poistaa kurssin. Paikallisesti sovellus heittää erroria tästä, mutta herokussa toimii.
+-Admin-käyttäjä voi lisätä uuden kurssin parametreilla nimi, aika, paikka ja ilmoittautuneiden maksimimäärä.  
+-Admin-käyttäjä voi poistaa kurssin.  
+-Tavallinen käyttäjä voi varata kurssin.    
+-Tavallinen Käyttäjä voi tarkastella varauksiaan.  
+-Tavallinen Käyttäjä voi poistaa varauksensa.  
 
 ### Tulevia toiminnallisuuksia 
--Tietoa aihepiireistä ja opettajista  
--Kurssimaksun kuvitteellinen maksaminen  
--Varauksen peruminen  
--Kahden tyyppisiä käyttäjiä:  
--Tavallinen käyttäjä voi tarkastella kursseja ja varata niitä.  
--Ylläpitokäyttäjä voi lisätä, muokata tai poistaa kursseja tai poistaa tavallisen käyttäjän varauksen.  
+-Tietoa aihepiireistä ja opettajista.  
+-Kurssimaksun kuvitteellinen maksaminen.  
+-Admin-käyttäjä voi poistaa varauksia.  
+-Admin-käyttäjä voi muokata kurssin tietoja.  
+
 
