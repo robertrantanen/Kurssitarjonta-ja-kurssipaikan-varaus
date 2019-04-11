@@ -35,3 +35,12 @@ class User(Base):
             return ["ADMIN"]
         else:
             return ["NORMAL"]
+
+
+    @staticmethod
+    def loyda_kayttajat(username=0):
+        stmt = text("SELECT * FROM User"
+                     " WHERE (username = :username)").params(username=username)
+        res = db.engine.execute(stmt)
+
+        return res

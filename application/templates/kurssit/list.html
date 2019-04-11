@@ -21,6 +21,7 @@
       </form>
       {% endif %}
     </td>
+
     <td>
       {% if current_user.admin==True %}
       <form method="POST" action="{{ url_for('kurssit_delete', kurssi_id=kurssi.id)}}">

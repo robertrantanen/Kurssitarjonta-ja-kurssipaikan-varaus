@@ -27,14 +27,23 @@ def kurssit_set_varattu(kurssi_id):
   
     return redirect(url_for("kurssit_index"))    
 
-@app.route("/kurssit/<kurssi_id>/", methods=["POST"])
-@login_required(role="ADMIN")
-def kurssit_muokkaa(kurssi_id):
+#@app.route("/kurssit/muokkaa/<kurssi_id>/", methods=["POST"])
+#@login_required
+#def kurssit_muokkaa(kurssi_id):
+#    form = KurssiForm(request.form)
 
-    k = Kurssi.query.get(kurssi_id)
-    uusi_nimi = request.form.get("nimi")
+#    if not form.validate():
+#        return render_template("kurssit/list.html", form = form)
+
+#    k = Kurssi.query.get(kurssi_id)
+
+
+#    k.nimi = form.nimi.data
+
+
+#    db.session().commit()
   
-    return redirect(url_for("kurssit_index")) 
+#    return redirect(url_for("kurssit_index")) 
 
 @app.route("/kurssit/", methods=["POST"])
 @login_required(role="ADMIN")
