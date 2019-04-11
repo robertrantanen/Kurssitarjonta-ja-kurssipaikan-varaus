@@ -27,6 +27,15 @@ def kurssit_set_varattu(kurssi_id):
   
     return redirect(url_for("kurssit_index"))    
 
+@app.route("/kurssit/<kurssi_id>/", methods=["POST"])
+@login_required(role="ADMIN")
+def kurssit_muokkaa(kurssi_id):
+
+    k = Kurssi.query.get(kurssi_id)
+    uusi_nimi = request.form.get("nimi")
+  
+    return redirect(url_for("kurssit_index")) 
+
 @app.route("/kurssit/", methods=["POST"])
 @login_required(role="ADMIN")
 def kurssit_create():
