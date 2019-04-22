@@ -15,14 +15,22 @@ def kurssit_form():
     return render_template("kurssit/new.html", form = KurssiForm())
 
 @app.route("/kurssit/<kurssi_id>/", methods=["POST"])
-@login_required(role="NORMAL")
-def kurssit_set_varattu(kurssi_id):
+#@login_required
+def kurssit_varaa_tai_muuta(kurssi_id):
 
-    varaukset = Varaus.loyda_onko_varaus_jo_olemassa(kurssi=kurssi_id)
-
-    if len(varaukset) == 0:
-        v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
-        db.session().add(v)
+    if current_user.admin == False:
+        varaukset = Varaus.loyda_onko_varaus_jo_olemassa(kurssi=kurssi_id)
+        if len(varaukset) == 0:
+            v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
+            db.session().add(v)
+            db.session().commit()
+    
+    else:
+        k = Kurssi.query.get(kurssi_id)
+        if k.taynna == True:
+            k.taynna = False
+        else:
+            k.taynna = True
         db.session().commit()
   
     return redirect(url_for("kurssit_index"))    

@@ -7,6 +7,7 @@
     <th>Aika</th>
     <th>Paikka</th>
     <th>Maksimikoko</th>
+    <th>Täynnä</th>
   </tr>
   {% for kurssi in kurssit %}
   <tr>
@@ -14,14 +15,21 @@
     <td>{{ kurssi.aika }}</td>
     <td>{{ kurssi.paikka }}</td>
     <td>{{ kurssi.maksimikoko }}</td>
+    <td>{{ kurssi.taynna }}</td>
     <td>
       {% if current_user.admin==False %}
-      <form method="POST" action="{{ url_for('kurssit_set_varattu', kurssi_id=kurssi.id) }}">
+      <form method="POST" action="{{ url_for('kurssit_varaa_tai_muuta', kurssi_id=kurssi.id) }}">
         <input type="submit" value="Varaa kurssi" />
       </form>
       {% endif %}
     </td>
-
+    <td>
+      {% if current_user.admin==True %}
+      <form method="POST" action="{{ url_for('kurssit_varaa_tai_muuta', kurssi_id=kurssi.id) }}">
+        <input type="submit" value="Vaihda täynnä-statusta" />
+      </form>
+      {% endif %}
+    </td>
     <td>
       {% if current_user.admin==True %}
       <form method="POST" action="{{ url_for('kurssit_delete', kurssi_id=kurssi.id)}}">
