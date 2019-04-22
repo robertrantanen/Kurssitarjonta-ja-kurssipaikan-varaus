@@ -18,15 +18,17 @@ def kurssit_form():
 #@login_required
 def kurssit_varaa_tai_muuta(kurssi_id):
 
+    k = Kurssi.query.get(kurssi_id)
+
     if current_user.admin == False:
         varaukset = Varaus.loyda_onko_varaus_jo_olemassa(kurssi=kurssi_id)
         if len(varaukset) == 0:
-            v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
-            db.session().add(v)
-            db.session().commit()
+            if k.taynna == False:
+                v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
+                db.session().add(v)
+                db.session().commit()
     
     else:
-        k = Kurssi.query.get(kurssi_id)
         if k.taynna == True:
             k.taynna = False
         else:
