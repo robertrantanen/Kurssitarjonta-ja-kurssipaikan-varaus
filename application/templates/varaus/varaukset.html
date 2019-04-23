@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <th>Kurssi</th>
+    <th>Maksimimäärä</th>
+    <th>Varaukset</th>
+  </tr>
+  {% for kurssi in kurssit %}
+  <tr>
+    <td>{{ kurssi.nimi }}</td>
+    <td>{{ kurssi.maksimikoko }}</td>
+    <td>{{ kurssi.maara }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
