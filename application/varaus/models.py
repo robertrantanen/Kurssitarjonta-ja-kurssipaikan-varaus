@@ -27,6 +27,16 @@ class Varaus(db.Model):
         return res
 
     @staticmethod
+    def loyda_kaikki_varaukset():
+        stmt = text("SELECT Varaus.kurssi_id, Kurssi.nimi AS kurssi, Varaus.account_id, account.username AS user FROM Varaus"
+                     " LEFT JOIN Kurssi ON Varaus.kurssi_id = Kurssi.id"
+                     " LEFT JOIN account ON Varaus.account_id = account.id"
+                     " ORDER BY kurssi")
+        res = db.engine.execute(stmt)
+
+        return res
+
+    @staticmethod
     def loyda_kurssin_varaukset(kurssi=0):
         stmt = text("SELECT * FROM Kurssi"
                      " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"

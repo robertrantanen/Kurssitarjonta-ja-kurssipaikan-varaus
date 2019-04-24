@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <p>
+      Kaikki varaukset:
+    </p>
+  </tr>
+  <tr>
+    <th>Kurssi</th>
+    <th>Käyttäjänimi</th>
+  </tr>
+  {% for varaus in varaukset %}
+  <tr>
+    <td>{{ varaus.kurssi }}</td>
+    <td>{{ varaus.user }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
