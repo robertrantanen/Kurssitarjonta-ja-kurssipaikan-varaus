@@ -7,6 +7,7 @@
     <th>Aika</th>
     <th>Paikka</th>
     <th>Maksimikoko</th>
+    <th>Varaukset</th>
     <th>Täynnä</th>
   </tr>
   {% for kurssi in kurssit %}
@@ -15,6 +16,7 @@
     <td>{{ kurssi.aika }}</td>
     <td>{{ kurssi.paikka }}</td>
     <td>{{ kurssi.maksimikoko }}</td>
+    <td>{{ kurssi.maara }}</td>
     <td>{{ kurssi.taynna }}</td>
     <td>
       {% if current_user.admin==False %}

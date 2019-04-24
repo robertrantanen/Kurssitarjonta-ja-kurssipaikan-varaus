@@ -49,14 +49,7 @@ class Varaus(db.Model):
 
         return response
 
-    @staticmethod
-    def loyda_kaikki_varaukset():
-        stmt = text("SELECT Kurssi.nimi, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara FROM Kurssi"
-                     " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
-                     " GROUP BY Kurssi.nimi")
-        res = db.engine.execute(stmt)
 
-        return res
 
 
 

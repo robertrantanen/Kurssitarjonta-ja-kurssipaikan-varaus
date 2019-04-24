@@ -7,7 +7,7 @@ from application.varaus.models import Varaus
 
 @app.route("/kurssit", methods=["GET"])
 def kurssit_index():
-    return render_template("kurssit/list.html", kurssit = Kurssi.query.all())
+    return render_template("kurssit/list.html", kurssit = Kurssi.loyda_kaikki_kurssit())
 
 @app.route("/kurssit/new/")
 @login_required(role="ADMIN")
