@@ -8,15 +8,15 @@
     </p>
   </tr>
   <tr>
-    <th>Kurssi</th>
-    <th>Aika</th>
-    <th>Paikka</th>
+    <th style="padding:5px;">Kurssi</th>
+    <th style="padding:5px;">Aika</th>
+    <th style="padding:5px;">Paikka</th>
   </tr>
   {% for kurssi in kurssit %}
   <tr>
-    <td>{{ kurssi.nimi }}</td>
-    <td>{{ kurssi.aika }}</td>
-    <td>{{ kurssi.paikka }}</td>
+    <td style="padding:5px;">{{ kurssi.nimi }}</td>
+    <td style="padding:5px;">{{ kurssi.aika }}</td>
+    <td style="padding:5px;">{{ kurssi.paikka }}</td>
     <td>
       <form method="POST" action="{{ url_for('varaus_delete', kurssi_id=kurssi.id)}}">
         <input type="submit" value="Poista varaus" />

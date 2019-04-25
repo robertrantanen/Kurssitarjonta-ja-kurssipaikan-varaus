@@ -27,6 +27,10 @@ def kurssit_varaa_tai_muuta(kurssi_id):
                 v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
                 db.session().add(v)
                 db.session().commit()
+            else:
+                return redirect(url_for("kurssit_index", errorMessage = "Kurssi on täynnä")) 
+        else:
+            return redirect(url_for("kurssit_index", errorMessage = "Olet jo varannut kurssin")) 
     
     else:
         if k.taynna == True:
@@ -35,7 +39,7 @@ def kurssit_varaa_tai_muuta(kurssi_id):
             k.taynna = True
         db.session().commit()
   
-    return redirect(url_for("kurssit_index"))    
+    return redirect(url_for("kurssit_index", errorMessage = ""))    
 
 #@app.route("/kurssit/muokkaa/<kurssi_id>/", methods=["POST"])
 #@login_required

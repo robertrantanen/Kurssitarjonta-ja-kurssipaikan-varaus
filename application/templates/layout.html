@@ -35,8 +35,8 @@
         {% if current_user.is_authenticated %}
         <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
         {% else %}
-        <a href="{{ url_for('auth_login') }}">Kirjaudu sisään</a>.
-        <a href="{{ url_for('auth_form') }}">Luo käyttäjä</a>
+        <a href="{{ url_for('auth_login') }}" style="padding:5px;">Kirjaudu sisään</a>
+        <a href="{{ url_for('auth_form') }}" style="padding:5px;">Luo käyttäjä</a>
         {% endif %}
       </div>
     </div>
