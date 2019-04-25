@@ -16,6 +16,8 @@ Kurssin peruutus
   
 [Heroku](https://tsoha-kurssitarjonta-ja-varaus.herokuapp.com/)
 
+[Käyttöohje](https://github.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/blob/master/documentation/k%C3%A4ytt%C3%B6ohje.md)
+
 [Käyttötapauksia](https://github.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/blob/master/documentation/k%C3%A4ytt%C3%B6tapaukset.md)
 
 [Tietokantakaavio](https://raw.githubusercontent.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/master/documentation/Tietokantakaavio.jpg)
