@@ -39,7 +39,8 @@ def kurssit_varaa_tai_muuta(kurssi_id):
             k.taynna = "Kyllä"
         db.session().commit()
   
-    return redirect(url_for("kurssit_index", errorMessage = ""))    
+    return redirect(url_for("kurssit_index", errorMessage = ""))  
+  
 
 #@app.route("/kurssit/muokkaa/<kurssi_id>/", methods=["POST"])
 #@login_required
