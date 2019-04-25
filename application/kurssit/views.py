@@ -23,7 +23,7 @@ def kurssit_varaa_tai_muuta(kurssi_id):
     if current_user.admin == False:
         varaukset = Varaus.loyda_onko_varaus_jo_olemassa(kurssi=kurssi_id)
         if len(varaukset) == 0:
-            if k.taynna == False:
+            if k.taynna == "Ei":
                 v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
                 db.session().add(v)
                 db.session().commit()
@@ -33,10 +33,10 @@ def kurssit_varaa_tai_muuta(kurssi_id):
             return redirect(url_for("kurssit_index", errorMessage = "Olet jo varannut kurssin")) 
     
     else:
-        if k.taynna == True:
-            k.taynna = False
+        if k.taynna == "Kyllä":
+            k.taynna = "Ei"
         else:
-            k.taynna = True
+            k.taynna = "Kyllä"
         db.session().commit()
   
     return redirect(url_for("kurssit_index", errorMessage = ""))    

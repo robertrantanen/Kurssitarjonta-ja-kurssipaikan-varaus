@@ -14,13 +14,13 @@ class Kurssi(Base):
     aika = db.Column(db.String(144))
     paikka = db.Column(db.String(144))
     maksimikoko = db.Column(db.Integer)
-    taynna = db.Column(db.Boolean)
+    taynna = db.Column(db.String(144))
 
     account = relationship('Varaus', backref=db.backref('varaus.account'))
 
     def __init__(self, nimi):
         self.nimi = nimi
-        self.taynna = False
+        self.taynna = "Ei"
 
 
     @staticmethod
