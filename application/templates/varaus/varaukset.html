@@ -15,6 +15,11 @@
   <tr>
     <td>{{ varaus.kurssi }}</td>
     <td>{{ varaus.user }}</td>
+    <td>
+      <form method="POST" action="{{ url_for('varaus_delete2', account_id=varaus.account_id, kurssi_id=varaus.kurssi_id)}}">
+        <input type="submit" value="Poista varaus" />
+      </form>
+    </td>
   </tr>
   {% endfor %}
 </table>

@@ -15,7 +15,7 @@ def kurssit_form():
     return render_template("kurssit/new.html", form = KurssiForm())
 
 @app.route("/kurssit/<kurssi_id>/", methods=["POST"])
-#@login_required
+@login_required()
 def kurssit_varaa_tai_muuta(kurssi_id):
 
     k = Kurssi.query.get(kurssi_id)

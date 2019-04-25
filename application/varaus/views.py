@@ -6,7 +6,7 @@ from application.kurssit.models import Kurssi
 from application.auth.models import User
 
 @app.route("/varaukset", methods=["GET"])
-#@login_required(role="NORMAL")
+@login_required()
 def varaus_index():
     if current_user.admin == False:
         return render_template("varaus/list.html", kurssit = Varaus.loyda_kayttajan_kurssit())
@@ -18,6 +18,16 @@ def varaus_index():
 @login_required(role="NORMAL")
 def varaus_delete(kurssi_id):
     v = Varaus.query.filter_by(account_id=current_user.id, kurssi_id=kurssi_id).first()
+
+    db.session().delete(v)
+    db.session().commit()
+  
+    return redirect(url_for("varaus_index"))
+
+@app.route("/varaukset/delete/<account_id><kurssi_id>/", methods=["POST"])
+@login_required(role="ADMIN")
+def varaus_delete2(account_id, kurssi_id):
+    v = Varaus.query.filter_by(account_id=account_id, kurssi_id=kurssi_id).first()
 
     db.session().delete(v)
     db.session().commit()
