@@ -7,11 +7,13 @@
 -Tavallinen käyttäjä voi varata kurssin.    
 -Tavallinen Käyttäjä voi tarkastella varauksiaan.  
 -Tavallinen Käyttäjä voi poistaa varauksensa.  
+-Admin-käyttäjä voi tarkastella kaikkia varauksia.  
+-Admin-käyttäjä voi poistaa varauksen.  
+-Admin käyttäjä voi muokata kurssin täydeksi. Täynnä olevaa kurssia ei voi varata. Täyden kurssin voi myös muokata takaisin.  
 
 ### Tulevia toiminnallisuuksia 
 -Tietoa aihepiireistä ja opettajista.  
--Kurssimaksun kuvitteellinen maksaminen.  
--Admin-käyttäjä voi poistaa varauksia.  
+-Kurssimaksun kuvitteellinen maksaminen.   
 -Admin-käyttäjä voi muokata kurssin tietoja.  
 
 
