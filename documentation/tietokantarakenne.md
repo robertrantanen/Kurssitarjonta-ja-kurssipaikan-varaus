@@ -2,7 +2,7 @@
 
 [tietokantakaavio](https://raw.githubusercontent.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/master/documentation/tietokantakaavio.jpg)
 
-Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Lopullisessa versiossa on mahdollisesti myös taulut aihepiirille ja opettajalle sekä liitostaulu opettajan ja kurssin välillä. Kurssin aika on tarkoituksella merkkijonomuotoinen ,jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake pitäisi olla boolean, mutta se on sovelluksessa nyt merkkijono, jotta siihen saadaan arvot "kyllä" ja "ei". Account-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, tämä muuttuu mahdollisesti lopullisessa versiossa.
+Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Lopullisessa versiossa on mahdollisesti myös taulut aihepiirille ja opettajalle sekä liitostaulu opettajan ja kurssin välillä. Kurssin aika on tarkoituksella merkkijonomuotoinen, jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake pitäisi olla boolean, mutta se on sovelluksessa nyt merkkijono, jotta siihen saadaan arvot "kyllä" ja "ei". Account-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, tämä muuttuu mahdollisesti lopullisessa versiossa.
 
 #### Create table-lauseet:
 
