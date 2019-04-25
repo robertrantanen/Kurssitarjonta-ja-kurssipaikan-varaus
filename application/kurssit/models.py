@@ -27,7 +27,7 @@ class Kurssi(Base):
     def loyda_kaikki_kurssit():
         stmt = text("SELECT Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara, Kurssi.taynna FROM Kurssi"
                      " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
-                     " GROUP BY Kurssi.nimi")
+                     " GROUP BY Kurssi.id, Kurssi.nimi")
         res = db.engine.execute(stmt)
 
         return res
