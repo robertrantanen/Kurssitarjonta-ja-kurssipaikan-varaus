@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <p> Muokkaa kurssia '{{ k.nimi }}':</p>
+    <p> Muokkaa kurssia "{{ k.nimi }}":</p>
     <form method="POST" action="{{ url_for('kurssit_muokkaa', kurssi_id=k.id) }}">
         <table>
             <tr>
@@ -9,7 +9,7 @@
                   {{ form.nimi.label }}
                 </td>
                 <td>
-                  {{ form.nimi }}
+                  {{ form.nimi }} ({{ k.nimi }})
                 </td>
                 <td>
                   <ul>
@@ -24,7 +24,7 @@
                   {{ form.aika.label }}
                 </td>
                 <td>
-                  {{ form.aika }}
+                  {{ form.aika }} ({{ k.aika }})
                 </td>
                 <td>
                   <ul>
@@ -39,7 +39,7 @@
                   {{ form.paikka.label }}
                 </td>
                 <td>
-                  {{ form.paikka }}
+                  {{ form.paikka }} ({{ k.paikka }})
                 </td>
                 <td>
                   <ul>
@@ -54,7 +54,7 @@
                   {{ form.maksimikoko.label }}
                 </td>
                 <td>
-                  {{ form.maksimikoko }}
+                  {{ form.maksimikoko }} ({{ k.maksimikoko }})
                 </td>
                 <td>
                   <ul>
