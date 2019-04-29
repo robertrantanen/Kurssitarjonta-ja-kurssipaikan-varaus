@@ -42,23 +42,22 @@ def kurssit_varaa_tai_muuta(kurssi_id):
     return redirect(url_for("kurssit_index", errorMessage = ""))  
   
 
-#@app.route("/kurssit/muokkaa/<kurssi_id>/", methods=["POST"])
-#@login_required
-#def kurssit_muokkaa(kurssi_id):
-#    form = KurssiForm(request.form)
+@app.route("/kurssit/muokkaa/<kurssi_id>/", methods=["POST"])
+@login_required(role="ADMIN")
+def kurssit_muokkaa(kurssi_id):
+    k = Kurssi.query.get(kurssi_id)
 
-#    if not form.validate():
-#        return render_template("kurssit/list.html", form = form)
+    form = KurssiForm(request.form)
 
-#    k = Kurssi.query.get(kurssi_id)
+    if not form.validate():
+        return render_template("kurssit/muokkaakurssi.html", k = k, form = form)
 
+    form.populate_obj(k)
 
-#    k.nimi = form.nimi.data
-
-
-#    db.session().commit()
+    db.session().commit()
   
-#    return redirect(url_for("kurssit_index")) 
+    return redirect(url_for("kurssit_index")) 
+
 
 @app.route("/kurssit/", methods=["POST"])
 @login_required(role="ADMIN")

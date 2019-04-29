@@ -34,6 +34,13 @@
     </td>
     <td>
       {% if current_user.admin==True %}
+      <form method="POST" action="{{ url_for('kurssit_muokkaa', kurssi_id=kurssi.id) }}">
+        <input type="submit" value="Muokkaa kurssia" />
+      </form>
+      {% endif %}
+    </td>
+    <td>
+      {% if current_user.admin==True %}
       <form method="POST" action="{{ url_for('kurssit_delete', kurssi_id=kurssi.id)}}">
         <input type="submit" value="Poista kurssi" />
       </form>
