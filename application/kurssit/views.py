@@ -4,6 +4,7 @@ from application.kurssit.models import Kurssi
 from application.kurssit.forms import KurssiForm
 from flask_login import current_user
 from application.varaus.models import Varaus
+from application.aihepiiri.models import Aihepiiri
 
 @app.route("/kurssit", methods=["GET"])
 def kurssit_index():
@@ -12,7 +13,10 @@ def kurssit_index():
 @app.route("/kurssit/new/")
 @login_required(role="ADMIN")
 def kurssit_form():
-    return render_template("kurssit/new.html", form = KurssiForm())
+    form = KurssiForm()
+    insert_choices(form)
+
+    return render_template("kurssit/new.html", form = form)
 
 @app.route("/kurssit/<kurssi_id>/", methods=["POST"])
 @login_required()
@@ -48,6 +52,7 @@ def kurssit_muokkaa(kurssi_id):
     k = Kurssi.query.get(kurssi_id)
 
     form = KurssiForm(request.form)
+    insert_choices(form)
 
     if not form.validate():
         return render_template("kurssit/muokkaakurssi.html", k = k, form = form)
@@ -63,11 +68,13 @@ def kurssit_muokkaa(kurssi_id):
 @login_required(role="ADMIN")
 def kurssit_create():
     form = KurssiForm(request.form)
+    insert_choices(form)
 
     if not form.validate():
         return render_template("kurssit/new.html", form = form)
 
     k = Kurssi(request.form.get("nimi"))
+    k.aihepiiri_id = form.aihepiiri_id.data
     k.aika = form.aika.data
     k.paikka = form.paikka.data
     k.maksimikoko = form.maksimikoko.data
@@ -95,4 +102,8 @@ def kurssit_delete(kurssi_id):
   
     return redirect(url_for("kurssit_index"))
 
+def insert_choices(form):
+    choices = [(a.id, a.nimi) for a in Aihepiiri.query.order_by('nimi')]
+    form.aihepiiri_id.choices = choices
+    return
 

@@ -16,6 +16,9 @@ class Kurssi(Base):
     maksimikoko = db.Column(db.Integer)
     taynna = db.Column(db.String(144))
 
+    aihepiiri_id = db.Column(db.Integer, db.ForeignKey('aihepiiri.id'),
+                           nullable=False)
+
     account = relationship('Varaus', backref=db.backref('varaus.account'))
 
     def __init__(self, nimi):
