@@ -1,68 +1,26 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <p> Muokkaa kurssia "{{ k.nimi }}":</p>
+    <p> Muokkaa kurssia "{{ k.nimi }}, {{k.aika}}, {{k.paikka}}, {{k.maksimikoko}}":</p>
     <form method="POST" action="{{ url_for('kurssit_muokkaa', kurssi_id=k.id) }}">
-        <table>
-            <tr>
-                <td>
-                  {{ form.nimi.label }}
-                </td>
-                <td>
-                  {{ form.nimi }} ({{ k.nimi }})
-                </td>
-                <td>
-                  <ul>
-                    {% for error in form.nimi.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  {{ form.aika.label }}
-                </td>
-                <td>
-                  {{ form.aika }} ({{ k.aika }})
-                </td>
-                <td>
-                  <ul>
-                    {% for error in form.aika.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  {{ form.paikka.label }}
-                </td>
-                <td>
-                  {{ form.paikka }} ({{ k.paikka }})
-                </td>
-                <td>
-                  <ul>
-                    {% for error in form.paikka.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  {{ form.maksimikoko.label }}
-                </td>
-                <td>
-                  {{ form.maksimikoko }} ({{ k.maksimikoko }})
-                </td>
-                <td>
-                  <ul>
-                    {% for error in form.maksimikoko.errors %}
-                    <li>{{ error }}</li>
-                    {% endfor %}
-                  </ul>
-                </td>
+      <table>
+        {% for field in form %}
+        <tr>
+          <td>
+            {{ field.label }}
+          </td>
+          <td>
+            {{ field }}
+          </td>
+          <td>
+            <ul>
+              {% for error in field.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        {% endfor %}
               </tr>
               <tr>
                 <td colspan="2">

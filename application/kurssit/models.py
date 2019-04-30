@@ -11,13 +11,11 @@ class Kurssi(Base):
     __tablename__ = "kurssi"
 
     nimi = db.Column(db.String(144), nullable=False)
+    aihepiiri_id = db.Column(db.Integer, db.ForeignKey('aihepiiri.id'), nullable=False)
     aika = db.Column(db.String(144))
     paikka = db.Column(db.String(144))
     maksimikoko = db.Column(db.Integer)
     taynna = db.Column(db.String(144))
-
-    aihepiiri_id = db.Column(db.Integer, db.ForeignKey('aihepiiri.id'),
-                           nullable=False)
 
     account = relationship('Varaus', backref=db.backref('varaus.account'))
 
@@ -28,8 +26,9 @@ class Kurssi(Base):
 
     @staticmethod
     def loyda_kaikki_kurssit():
-        stmt = text("SELECT Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara, Kurssi.taynna FROM Kurssi"
+        stmt = text("SELECT Kurssi.id, Kurssi.nimi, Aihepiiri.nimi AS aihepiiri, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara, Kurssi.taynna FROM Kurssi"
                      " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
+                     " LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id"
                      " GROUP BY Kurssi.id, Kurssi.nimi")
         res = db.engine.execute(stmt)
 
