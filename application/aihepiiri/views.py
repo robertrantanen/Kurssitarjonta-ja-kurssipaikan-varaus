@@ -7,7 +7,7 @@ from flask_login import current_user
 
 @app.route("/aihepiiri", methods=["GET"])
 def aihepiiri_index():
-    return render_template("aihepiiri/list.html", aihepiirit = Aihepiiri.query.all())
+    return render_template("aihepiiri/list.html", aihepiirit = Aihepiiri.loyda_aihepiirit())
 
 @app.route("/aihepiiri/new/")
 @login_required(role="ADMIN")

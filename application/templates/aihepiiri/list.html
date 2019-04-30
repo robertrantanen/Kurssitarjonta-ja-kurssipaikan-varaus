@@ -4,10 +4,12 @@
 <table>
   <tr>
     <th style="padding:5px;">Aihepiiri</th>
+    <th style="padding:5px;">Kurssit</th>
   </tr>
   {% for aihepiiri in aihepiirit %}
   <tr>
     <td style="padding:5px;">{{ aihepiiri.nimi }}</td>
+    <td style="padding:5px;">{{ aihepiiri.kurssit }}</td>
   </tr>
   {% endfor %}
 </table>
