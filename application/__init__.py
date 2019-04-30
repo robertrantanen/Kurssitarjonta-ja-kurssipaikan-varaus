@@ -64,6 +64,9 @@ from application.auth import views
 from application.varaus import models
 from application.varaus import views
 
+from application.aihepiiri import models
+from application.aihepiiri import views
+
 from application.auth.models import User
 
 @login_manager.user_loader

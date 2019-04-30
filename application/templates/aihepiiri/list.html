@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <th style="padding:5px;">Aihepiiri</th>
+  </tr>
+  {% for aihepiiri in aihepiirit %}
+  <tr>
+    <td style="padding:5px;">{{ aihepiiri.nimi }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
