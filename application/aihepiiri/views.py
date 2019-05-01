@@ -30,3 +30,20 @@ def aihepiiri_create():
   
     return redirect(url_for("aihepiiri_index"))
 
+
+@app.route("/aihepiiri/<aihepiiri_id>/", methods=["POST"])
+@login_required(role="ADMIN")
+def aihepiiri_muokkaa(aihepiiri_id):
+    a = Aihepiiri.query.get(aihepiiri_id)
+
+    form = AihepiiriForm(request.form)
+
+    if not form.validate():
+        return render_template("aihepiiri/muokkaa.html", a = a, form = form)
+
+    form.populate_obj(a)
+
+    db.session().commit()
+  
+    return redirect(url_for("aihepiiri_index")) 
+

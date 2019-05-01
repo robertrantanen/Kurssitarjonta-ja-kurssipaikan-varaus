@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <p> Muokkaa aihepiiriä "{{ a.nimi }}":</p>
+    <form method="POST" action="{{ url_for('aihepiiri_muokkaa', aihepiiri_id=a.id) }}">
+      <table>
+        {% for field in form %}
+        <tr>
+          <td>
+            {{ field.label }}
+          </td>
+          <td>
+            {{ field }}
+          </td>
+          <td>
+            <ul>
+              {% for error in field.errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+        {% endfor %}
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input type="submit" value="Muokkaa aihepiiriä"/>
+                </td>
+              </tr>
+        </table>
+    </form>
+{% endblock %}

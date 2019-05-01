@@ -10,6 +10,13 @@
   <tr>
     <td style="padding:5px;">{{ aihepiiri.nimi }}</td>
     <td style="padding:5px;">{{ aihepiiri.kurssit }}</td>
+    <td>
+      {% if current_user.admin==True %}
+      <form method="POST" action="{{ url_for('aihepiiri_muokkaa', aihepiiri_id=aihepiiri.id) }}">
+        <input type="submit" value="Muokkaa aihepiiriä" />
+      </form>
+      {% endif %}
+    </td>
   </tr>
   {% endfor %}
 </table>

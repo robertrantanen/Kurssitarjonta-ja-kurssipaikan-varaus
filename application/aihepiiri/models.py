@@ -16,7 +16,7 @@ class Aihepiiri(Base):
 
     @staticmethod
     def loyda_aihepiirit():
-        stmt = text("SELECT Aihepiiri.nimi, COUNT(Kurssi.id) AS kurssit FROM Aihepiiri"
+        stmt = text("SELECT Aihepiiri.id, Aihepiiri.nimi, COUNT(Kurssi.id) AS kurssit FROM Aihepiiri"
                      " LEFT JOIN Kurssi ON Kurssi.aihepiiri_id = Aihepiiri.id"
                      " GROUP BY Aihepiiri.id")
         res = db.engine.execute(stmt)
