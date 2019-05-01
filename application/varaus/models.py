@@ -12,6 +12,7 @@ class Varaus(db.Model):
     __tablename__ = 'varaus'
     account_id = Column(Integer, ForeignKey('account.id'), primary_key=True)
     kurssi_id = Column(Integer, ForeignKey('kurssi.id'), primary_key=True)
+    maksettu = db.Column(db.String(144))
 
     account = relationship('User', backref=db.backref('account'))
     kurssi = relationship('Kurssi', backref=db.backref('kurssi'))
@@ -19,7 +20,7 @@ class Varaus(db.Model):
 
     @staticmethod
     def loyda_kayttajan_kurssit():
-        stmt = text("SELECT * FROM Kurssi"
+        stmt = text("SELECT Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Varaus.maksettu FROM Kurssi"
                      " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
                      " WHERE (Varaus.account_id = :id)").params(id=current_user.id)
         res = db.engine.execute(stmt)
@@ -28,7 +29,7 @@ class Varaus(db.Model):
 
     @staticmethod
     def loyda_kaikki_varaukset():
-        stmt = text("SELECT Varaus.kurssi_id, Kurssi.nimi AS kurssi, Varaus.account_id, account.username AS user FROM Varaus"
+        stmt = text("SELECT Varaus.kurssi_id, Kurssi.nimi AS kurssi, Varaus.account_id, account.username AS user, Varaus.maksettu FROM Varaus"
                      " LEFT JOIN Kurssi ON Varaus.kurssi_id = Kurssi.id"
                      " LEFT JOIN account ON Varaus.account_id = account.id"
                      " ORDER BY kurssi")

@@ -14,7 +14,7 @@ def kurssit_index():
 @login_required(role="ADMIN")
 def kurssit_form():
     form = KurssiForm()
-    insert_choices(form)
+    selectField_toimimaan(form)
 
     return render_template("kurssit/new.html", form = form)
 
@@ -28,7 +28,7 @@ def kurssit_varaa_tai_muuta(kurssi_id):
         varaukset = Varaus.loyda_onko_varaus_jo_olemassa(kurssi=kurssi_id)
         if len(varaukset) == 0:
             if k.taynna == "Ei":
-                v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id) 
+                v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id, maksettu="Ei") 
                 db.session().add(v)
                 db.session().commit()
             else:
@@ -52,7 +52,7 @@ def kurssit_muokkaa(kurssi_id):
     k = Kurssi.query.get(kurssi_id)
 
     form = KurssiForm(request.form)
-    insert_choices(form)
+    selectField_toimimaan(form)
 
     if not form.validate():
         return render_template("kurssit/muokkaakurssi.html", k = k, form = form)
@@ -68,7 +68,7 @@ def kurssit_muokkaa(kurssi_id):
 @login_required(role="ADMIN")
 def kurssit_create():
     form = KurssiForm(request.form)
-    insert_choices(form)
+    selectField_toimimaan(form)
 
     if not form.validate():
         return render_template("kurssit/new.html", form = form)
@@ -102,7 +102,7 @@ def kurssit_delete(kurssi_id):
   
     return redirect(url_for("kurssit_index"))
 
-def insert_choices(form):
+def selectField_toimimaan(form):
     choices = [(a.id, a.nimi) for a in Aihepiiri.query.order_by('nimi')]
     form.aihepiiri_id.choices = choices
     return
