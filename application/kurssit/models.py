@@ -40,7 +40,7 @@ class Kurssi(Base):
                      " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
                      " LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id"
                      " WHERE (Aihepiiri.id = :id)"
-                     " GROUP BY Kurssi.id, Kurssi.nimi"
+                     " GROUP BY Kurssi.id, Kurssi.nimi, Aihepiiri.nimi"
                      ).params(id=aihepiiri)
         res = db.engine.execute(stmt)
 
