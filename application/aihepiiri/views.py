@@ -47,3 +47,14 @@ def aihepiiri_muokkaa(aihepiiri_id):
   
     return redirect(url_for("aihepiiri_index")) 
 
+@app.route("/aihepiiri/delete/<aihepiiri_id>/", methods=["POST"])
+@login_required(role="ADMIN")
+def aihepiiri_poista(aihepiiri_id):
+
+    a = Aihepiiri.query.get(aihepiiri_id)
+    
+    db.session().delete(a)
+    db.session().commit()
+  
+    return redirect(url_for("aihepiiri_index"))
+

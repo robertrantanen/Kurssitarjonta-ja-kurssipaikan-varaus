@@ -17,6 +17,13 @@
       </form>
       {% endif %}
     </td>
+    <td>
+      {% if current_user.admin==True %}
+      <form method="POST" action="{{ url_for('aihepiiri_poista', aihepiiri_id=aihepiiri.id) }}">
+        <input type="submit" value="Poista aihepiiri" />
+      </form>
+      {% endif %}
+    </td>
   </tr>
   {% endfor %}
 </table>

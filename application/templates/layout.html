@@ -18,10 +18,10 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('kurssit_index') }} ">Listaa kurssit</a>
+          <a class="nav-link" href="{{ url_for('aihepiiri_index') }} ">Listaa aihepiirit</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('aihepiiri_index') }} ">Listaa aihepiirit</a>
+          <a class="nav-link" href="{{ url_for('kurssit_index') }} ">Listaa kurssit</a>
         </li>
         <li class="nav-item">
           {% if current_user.is_authenticated %}
@@ -30,12 +30,12 @@
         </li>
         <li class="nav-item">
           {% if current_user.admin==True %}
-          <a class="nav-link" href="{{ url_for('kurssit_form') }} ">Lisää kurssi</a>
+          <a class="nav-link" href="{{ url_for('aihepiiri_form') }} ">Lisää aihepiiri</a>
           {% endif %}
         </li>
         <li class="nav-item">
           {% if current_user.admin==True %}
-          <a class="nav-link" href="{{ url_for('aihepiiri_form') }} ">Lisää aihepiiri</a>
+          <a class="nav-link" href="{{ url_for('kurssit_form') }} ">Lisää kurssi</a>
           {% endif %}
         </li>
       </ul>
