@@ -33,3 +33,16 @@ class Kurssi(Base):
         res = db.engine.execute(stmt)
 
         return res
+
+    @staticmethod
+    def loyda_aihepiirin_kurssit(aihepiiri=0):
+        stmt = text("SELECT Kurssi.id, Kurssi.nimi, Aihepiiri.nimi AS aihepiiri, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara, Kurssi.taynna FROM Kurssi"
+                     " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
+                     " LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id"
+                     " WHERE (Aihepiiri.id = :id)"
+                     " GROUP BY Kurssi.id, Kurssi.nimi"
+                     ).params(id=aihepiiri)
+        res = db.engine.execute(stmt)
+
+        return res
+
