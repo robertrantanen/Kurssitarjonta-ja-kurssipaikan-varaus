@@ -29,7 +29,7 @@ class Kurssi(Base):
         stmt = text("SELECT Kurssi.id, Kurssi.nimi, Aihepiiri.nimi AS aihepiiri, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara, Kurssi.taynna FROM Kurssi"
                      " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
                      " LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id"
-                     " GROUP BY Kurssi.id, Kurssi.nimi")
+                     " GROUP BY Kurssi.id, Kurssi.nimi, Aihepiiri.nimi")
         res = db.engine.execute(stmt)
 
         return res
