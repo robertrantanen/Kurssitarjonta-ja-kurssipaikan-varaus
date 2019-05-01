@@ -10,6 +10,11 @@ from application.aihepiiri.models import Aihepiiri
 def kurssit_index():
     return render_template("kurssit/list.html", kurssit = Kurssi.loyda_kaikki_kurssit())
 
+@app.route("/kurssit/<kurssi_id>/", methods=["GET"])
+@login_required(role="ADMIN")
+def kurssin_varaukset(kurssi_id):
+    return render_template("varaus/varaukset.html", varaukset = Varaus.loyda_kurssin_varaukset(kurssi=kurssi_id))
+
 @app.route("/kurssit/new/")
 @login_required(role="ADMIN")
 def kurssit_form():
@@ -101,6 +106,7 @@ def kurssit_delete(kurssi_id):
     db.session().commit()
   
     return redirect(url_for("kurssit_index"))
+
 
 def selectField_toimimaan(form):
     choices = [(a.id, a.nimi) for a in Aihepiiri.query.order_by('nimi')]

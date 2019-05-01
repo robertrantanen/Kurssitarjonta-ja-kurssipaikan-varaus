@@ -34,7 +34,7 @@ def varaus_delete2(account_id, kurssi_id):
   
     return redirect(url_for("varaus_index"))
 
-@app.route("/varaukset/<kurssi_id>/", methods=["POST"])
+@app.route("/varaukset/maksa/<kurssi_id>/", methods=["POST"])
 @login_required(role="NORMAL")
 def varaus_maksa(kurssi_id):
     v = Varaus.query.filter_by(account_id=current_user.id, kurssi_id=kurssi_id).first()

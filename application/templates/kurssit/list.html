@@ -4,7 +4,7 @@
 <table>
   <tr>
     <p>
-      Kaikki kurssit:
+      Kurssit:
     </p>
   </tr>
   <tr>
@@ -25,6 +25,13 @@
     <td style="padding:5px;">{{ kurssi.maksimikoko }}</td>
     <td style="padding:5px;">{{ kurssi.maara }}</td>
     <td style="padding:5px;">{{ kurssi.taynna }}</td>
+    <td>
+      {% if current_user.admin==True %}
+      <form method="GET" action="{{ url_for('kurssin_varaukset', kurssi_id=kurssi.id) }}">
+        <input type="submit" value="Listaa varaukset" />
+      </form>
+      {% endif %}
+    </td>
     <td>
       {% if current_user.admin==False %}
       <form method="POST" action="{{ url_for('kurssit_varaa_tai_muuta', kurssi_id=kurssi.id) }}">

@@ -39,8 +39,9 @@ class Varaus(db.Model):
 
     @staticmethod
     def loyda_kurssin_varaukset(kurssi=0):
-        stmt = text("SELECT * FROM Kurssi"
-                     " LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id"
+        stmt = text("SELECT Kurssi.nimi AS kurssi, account.username AS user, Varaus.maksettu, Varaus.account_id, Varaus.Kurssi_id FROM Varaus"
+                     " LEFT JOIN Kurssi ON Varaus.kurssi_id = Kurssi.id"
+                     " LEFT JOIN account ON Varaus.account_id = account.id"
                      " WHERE (Varaus.kurssi_id = :id)").params(id=kurssi)
         res = db.engine.execute(stmt)
 
