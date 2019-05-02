@@ -50,15 +50,28 @@ LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id
 LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id  
 GROUP BY Kurssi.id, Kurssi.nimi, Aihepiiri.id;  
 
+Seuraava yhteenvetokysely selvittää kaikki aihepiirit ja niiden kurssien lukumäärät:
+
+SELECT Aihepiiri.id, Aihepiiri.nimi, COUNT(Kurssi.id) AS kurssit FROM Aihepiiri  
+LEFT JOIN Kurssi ON Kurssi.aihepiiri_id = Aihepiiri.id   
+GROUP BY Aihepiiri.id;  
+
+Uuden käyttäjän, kurssin, aihepiirin tai varauksen luominen tapahtuu suoraviivaisesti INSERT INTO-kyselyllä. Esimerkiksi uuden käyttäjän luominen:
+
+INSERT INTO account (username, password, admin) VALUES (?, ?, ?)
+
+Tiedon muokkaaminen ja poistaminen on myös niin ikään suoraviivaista. Esimerkiksi kurssin muokkaaminen:
+
+UPDATE kurssi SET nimi=?, aihepiiri_id=?, aika=?, paikka=?, maksimikoko=? WHERE kurssi.id = ?
+
+Varauksen poistaminen:
+
+DELETE FROM varaus WHERE varaus.account_id = ? AND varaus.kurssi_id = ?
+
 Tietyn käyttäjän varatut kurssit selviävät seuraavalla kyselyllä:
 
-SELECT * FROM Kurssi  
+SELECT * Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Varaus.maksettu FROM Kurssi    
 LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id  
 WHERE (Varaus.account_id = ?);  
 
-Sovelluksessa parametrina annetaan nykyisen normaalikäyttäjän id. Seuraava yhteenvetokysely selvittää kaikki aihepiirit ja niiden kurssien lukumäärät:
-
-SELECT Aihepiiri.id, Aihepiiri.nimi, COUNT(Kurssi.id) AS kurssit FROM Aihepiiri  
-LEFT JOIN Kurssi ON Kurssi.aihepiiri_id = Aihepiiri.id  
-GROUP BY Aihepiiri.id;
-
+Sovelluksessa parametrina annetaan nykyisen normaalikäyttäjän id. 
