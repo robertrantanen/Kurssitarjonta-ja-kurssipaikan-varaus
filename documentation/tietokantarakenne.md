@@ -1,14 +1,22 @@
 ### Tietokantarakenne
 
-[tietokantakaavio](https://raw.githubusercontent.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/master/documentation/tietokantakaavio.jpg)
+![tietokantakaavio](https://raw.githubusercontent.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/master/documentation/tietokantakaavio2.png)
 
-Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Lopullisessa versiossa on mahdollisesti myös taulut aihepiirille ja opettajalle sekä liitostaulu opettajan ja kurssin välillä. Kurssin aika on tarkoituksella merkkijonomuotoinen, jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake pitäisi olla boolean, mutta se on sovelluksessa nyt merkkijono, jotta siihen saadaan arvot "kyllä" ja "ei". Account-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, tämä muuttuu mahdollisesti lopullisessa versiossa.
+Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Kurssin aika on tarkoituksella merkkijonomuotoinen, jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake sekä varauksen maksettu-sarake pitäisivät olla boolean, mutta ne ovat sovelluksessa nyt merkkijonoja, jotta niihin saadaan arvot "kyllä" ja "ei". Account-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, en jaksanut korjata sitä sillä olisi pitänyt muokata niin monesta paikasta ja sovellus olisi voinut rikkoutua.
 
 #### Create table-lauseet:
+
+CREATE TABLE aihepiiri (  
+	id INTEGER NOT NULL,   
+	nimi VARCHAR(144) NOT NULL,   
+	PRIMARY KEY (id)  
+)  
+
 
 CREATE TABLE kurssi (  
 	id INTEGER NOT NULL,   
 	nimi VARCHAR(144) NOT NULL,   
+	aihepiiri_id INTEGER NOT NULL,  
 	aika VARCHAR(144),   
 	paikka VARCHAR(144),   
 	maksimikoko INTEGER,   
@@ -27,25 +35,30 @@ CREATE TABLE account (
 CREATE TABLE varaus (  
 	account_id INTEGER NOT NULL,   
 	kurssi_id INTEGER NOT NULL,   
+	maksettu VARCHAR(144),   
 	PRIMARY KEY (account_id, kurssi_id),   
 	FOREIGN KEY(account_id) REFERENCES account (id),   
-	FOREIGN KEY(kurssi_id) REFERENCES kurssi (id)  
+	FOREIGN KEY(kurssi_id) REFERENCES kurssi (id)   
 )  
 
 #### SQL-kyselyitä
 
 Kaikkien kurssien listaaminen tapahtuu yhteenvetokyselyllä, joka selvittää myös kurssin varausten lukumäärän:
 
-SELECT Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara,  
-Kurssi.taynna FROM Kurssi  
+SELECT Kurssi.id, Kurssi.nimi, Aihepiiri.nimi AS aihepiiri, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara, Kurssi.taynna FROM Kurssi  
 LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id  
-GROUP BY Kurssi.id, Kurssi.nimi;  
+LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id  
+GROUP BY Kurssi.id, Kurssi.nimi, Aihepiiri.id;  
 
-Tietyn käyttäjän varaukset selviävät seuraavalla kyselyllä:
+Tietyn käyttäjän varatut kurssit selviävät seuraavalla kyselyllä:
 
 SELECT * FROM Kurssi  
 LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id  
 WHERE (Varaus.account_id = ?);  
 
-Sovelluksessa parametrina annetaan nykyisen normaalikäyttäjän id.
+Sovelluksessa parametrina annetaan nykyisen normaalikäyttäjän id. Seuraava yhteenvetokysely selvittää kaikki aihepiirit ja niiden kurssien lukumäärät:
+
+SELECT Aihepiiri.id, Aihepiiri.nimi, COUNT(Kurssi.id) AS kurssit FROM Aihepiiri  
+LEFT JOIN Kurssi ON Kurssi.aihepiiri_id = Aihepiiri.id  
+GROUP BY Aihepiiri.id;
 
