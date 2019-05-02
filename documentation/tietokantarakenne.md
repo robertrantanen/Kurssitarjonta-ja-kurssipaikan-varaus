@@ -2,7 +2,7 @@
 
 ![tietokantakaavio](https://raw.githubusercontent.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/master/documentation/tietokantakaavio.png)
 
-Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Kurssin aika on tarkoituksella merkkijonomuotoinen, jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake sekä varauksen maksettu-sarake pitäisivät olla boolean, mutta ne ovat sovelluksessa nyt merkkijonoja, jotta niihin saadaan arvot "kyllä" ja "ei". Account-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, en jaksanut korjata sitä sillä olisi pitänyt muokata niin monesta paikasta ja sovellus olisi voinut rikkoutua.
+Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Kurssin aika on tarkoituksella merkkijonomuotoinen, jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake sekä varauksen maksettu-sarake pitäisivät olla boolean, mutta ne ovat sovelluksessa nyt merkkijonoja, jotta niihin saadaan arvot "kyllä" ja "ei". Account-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, en jaksanut korjata sitä sillä pelkäsin sovelluksen rikkoutuvan.
 
 #### Create table-lauseet:
 
@@ -58,24 +58,24 @@ GROUP BY Aihepiiri.id;
 
 Uuden käyttäjän, kurssin, aihepiirin tai varauksen luominen tapahtuu suoraviivaisesti INSERT INTO-kyselyillä:
 
-INSERT INTO account (username, password, admin) VALUES (?, ?, ?)
-INSERT INTO aihepiiri (nimi) VALUES (?)
-INSERT INTO kurssi (nimi, aihepiiri_id, aika, paikka, maksimikoko, taynna) VALUES (?, ?, ?, ?, ?, ?)
-INSERT INTO varaus (account_id, kurssi_id, maksettu) VALUES (?, ?, ?)
+INSERT INTO account (username, password, admin) VALUES (?, ?, ?)  
+INSERT INTO aihepiiri (nimi) VALUES (?)  
+INSERT INTO kurssi (nimi, aihepiiri_id, aika, paikka, maksimikoko, taynna) VALUES (?, ?, ?, ?, ?, ?)  
+INSERT INTO varaus (account_id, kurssi_id, maksettu) VALUES (?, ?, ?)  
 
 Tiedon poistaminen ja muokkaaminen on myös niin ikään suoraviivaista:
 
-DELETE FROM varaus WHERE varaus.account_id = ? AND varaus.kurssi_id = ?
-DELETE FROM kurssi WHERE kurssi.id = ?
-DELETE FROM aihepiiri WHERE aihepiiri.id = ?
+DELETE FROM varaus WHERE varaus.account_id = ? AND varaus.kurssi_id = ?  
+DELETE FROM kurssi WHERE kurssi.id = ?  
+DELETE FROM aihepiiri WHERE aihepiiri.id = ?  
 
-UPDATE kurssi SET nimi=?, aihepiiri_id=?, aika=?, paikka=?, maksimikoko=? WHERE kurssi.id = ?
-UPDATE aihepiiri SET nimi=? WHERE aihepiiri.id = ?
+UPDATE kurssi SET nimi=?, aihepiiri_id=?, aika=?, paikka=?, maksimikoko=? WHERE kurssi.id = ?  
+UPDATE aihepiiri SET nimi=? WHERE aihepiiri.id = ?  
 
 Kurssin täynnä-sarakkeen ja varauksen maksettu-sarakkeen muokkaaminen tapahtuu myös UPDATE-kyselyillä:
 
-UPDATE kurssi SET taynna=? WHERE kurssi.id = ?
-UPDATE varaus SET maksettu=? WHERE varaus.account_id = ? AND varaus.kurssi_id = ?
+UPDATE kurssi SET taynna=? WHERE kurssi.id = ?  
+UPDATE varaus SET maksettu=? WHERE varaus.account_id = ? AND varaus.kurssi_id = ?  
 
 Tietyn käyttäjän varatut kurssit selviävät seuraavalla kyselyllä:
 
