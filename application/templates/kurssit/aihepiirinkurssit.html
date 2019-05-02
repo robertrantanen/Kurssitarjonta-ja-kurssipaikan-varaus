@@ -3,11 +3,12 @@
 {% block body %}
 <table>
   <tr>
-    Kaikki kurssit:
+    {% for aihepiiri in aihepiirit %}
+    Aihepiirin "{{aihepiiri.nimi}}" kurssit:
+    {% endfor %}
   </tr>
   <tr>
     <th style="padding:5px;">Kurssi</th>
-    <th style="padding:5px;">Aihepiiri</th>
     <th style="padding:5px;">Aika</th>
     <th style="padding:5px;">Paikka</th>
     <th style="padding:5px;">Maksimikoko</th>
@@ -17,7 +18,6 @@
   {% for kurssi in kurssit %}
   <tr>
     <td style="padding:5px;">{{ kurssi.nimi }}</td>
-    <td style="padding:5px;">{{ kurssi.aihepiiri }}</td>
     <td style="padding:5px;">{{ kurssi.aika }}</td>
     <td style="padding:5px;">{{ kurssi.paikka }}</td>
     <td style="padding:5px;">{{ kurssi.maksimikoko }}</td>

@@ -13,7 +13,7 @@ def kurssit_index():
 @app.route("/kurssit/<kurssi_id>/", methods=["GET"])
 @login_required(role="ADMIN")
 def kurssin_varaukset(kurssi_id):
-    return render_template("varaus/varaukset.html", varaukset = Varaus.loyda_kurssin_varaukset(kurssi=kurssi_id))
+    return render_template("varaus/kurssinvaraukset.html", varaukset = Varaus.loyda_kurssin_varaukset(kurssi_id), kurssit = Kurssi.loyda_kurssi(kurssi_id))
 
 @app.route("/kurssit/new/")
 @login_required(role="ADMIN")
@@ -36,10 +36,6 @@ def kurssit_varaa_tai_muuta(kurssi_id):
                 v = Varaus(account_id=current_user.id, kurssi_id=kurssi_id, maksettu="Ei") 
                 db.session().add(v)
                 db.session().commit()
-            else:
-                return redirect(url_for("kurssit_index", errorMessage = "Kurssi on täynnä")) 
-        else:
-            return redirect(url_for("kurssit_index", errorMessage = "Olet jo varannut kurssin")) 
     
     else:
         if k.taynna == "Kyllä":
@@ -48,7 +44,7 @@ def kurssit_varaa_tai_muuta(kurssi_id):
             k.taynna = "Kyllä"
         db.session().commit()
   
-    return redirect(url_for("kurssit_index", errorMessage = ""))  
+    return redirect(url_for("kurssit_index"))  
   
 
 @app.route("/kurssit/muokkaa/<kurssi_id>/", methods=["POST"])

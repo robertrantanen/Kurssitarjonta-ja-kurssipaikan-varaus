@@ -22,3 +22,13 @@ class Aihepiiri(Base):
         res = db.engine.execute(stmt)
 
         return res
+
+    @staticmethod
+    def loyda_aihepiiri(aihepiiri=0):
+        stmt = text("SELECT Aihepiiri.nimi FROM Aihepiiri"
+                     " WHERE (Aihepiiri.id = :id)"
+                     " LIMIT 1"
+                     ).params(id=aihepiiri)
+        res = db.engine.execute(stmt)
+
+        return res

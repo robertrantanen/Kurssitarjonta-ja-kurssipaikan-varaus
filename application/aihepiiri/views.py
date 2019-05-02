@@ -12,7 +12,7 @@ def aihepiiri_index():
 
 @app.route("/aihepiiri/<aihepiiri_id>/", methods=["GET"])
 def aihepiirin_kurssit(aihepiiri_id):
-    return render_template("kurssit/list.html", kurssit = Kurssi.loyda_aihepiirin_kurssit(aihepiiri_id))
+    return render_template("kurssit/aihepiirinkurssit.html", kurssit = Kurssi.loyda_aihepiirin_kurssit(aihepiiri_id), aihepiirit = Aihepiiri.loyda_aihepiiri(aihepiiri_id))
 
 @app.route("/aihepiiri/new/")
 @login_required(role="ADMIN")

@@ -3,16 +3,16 @@
 {% block body %}
 <table>
   <tr>
-    Kaikki varaukset:
+    {% for kurssi in kurssit %}
+    Kurssin "{{kurssi.nimi}}" varaukset:
+    {% endfor %}
   </tr>
   <tr>
-    <th style="padding:5px;">Kurssi</th>
     <th style="padding:5px;">Käyttäjänimi</th>
     <th style="padding:5px;">Maksettu</th>
   </tr>
   {% for varaus in varaukset %}
   <tr>
-    <td style="padding:5px;">{{ varaus.kurssi }}</td>
     <td style="padding:5px;">{{ varaus.user }}</td>
     <td style="padding:5px;">{{ varaus.maksettu }}</td>
     <td>
