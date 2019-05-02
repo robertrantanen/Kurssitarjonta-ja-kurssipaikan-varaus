@@ -3,9 +3,12 @@
 {% block body %}
 <table>
   <tr>
-    <p>
+    <h5>
       Aihepiirit:
-    </p>
+    </h5>
+    {% if current_user.admin==True %}
+    Huom! Aihepiirin kurssit täytyy poistaa ennen kuin sen voi poistaa herokussa.
+    {% endif %}
   </tr>
   <tr>
     <th style="padding:5px;">Aihepiiri</th>
