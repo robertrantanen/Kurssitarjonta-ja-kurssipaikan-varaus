@@ -1,0 +1,9 @@
+[Kurssi|(pk) id:Integer; (fk) aihepiiri_id: Aihepiiri; nimi:String; aika: String; paikka:String; maksimikoko:Integer; täynnä:Boolean],
+[Aihepiiri|(pk) id:Integer; nimi:String],
+[User|(pk) id:Integer; username:String; password:String; admin:Boolean],
+[Varaus|(fk) kurssi_id:Kurssi;(fk) user_id:User; maksettu:Boolean],
+
+[Kurssi]1-*[Varaus],
+[Varaus]*-1[User],
+[Aihepiiri]1-*[Kurssi]
+
