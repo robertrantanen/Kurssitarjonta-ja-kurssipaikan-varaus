@@ -61,7 +61,7 @@ GROUP BY Aihepiiri.id;
 SELECT Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Kurssi.maksimikoko, COUNT(Varaus.kurssi_id) AS maara,    Kurssi.taynna FROM Kurssi   
 LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id   
 LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id   
-WHERE (Aihepiiri.id = :id)   
+WHERE (Aihepiiri.id = ?)   
 GROUP BY Kurssi.id, Kurssi.nimi;   
 
 -Useat GROUP BY-ehdot johtuvat herokun vaatimuksista. Uuden käyttäjän, kurssin, aihepiirin tai varauksen luominen tapahtuu suoraviivaisesti INSERT INTO-kyselyillä:
@@ -101,6 +101,6 @@ WHERE (Varaus.account_id = ?);
 
 SELECT account.username AS user, Varaus.maksettu, Varaus.account_id, Varaus.Kurssi_id FROM Varaus  
 LEFT JOIN account ON Varaus.account_id = account.id  
-WHERE (Varaus.kurssi_id = :id);  
+WHERE (Varaus.kurssi_id = ?);  
 
 
