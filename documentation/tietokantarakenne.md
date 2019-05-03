@@ -2,7 +2,7 @@
 
 ![tietokantakaavio](https://raw.githubusercontent.com/robertrantanen/Kurssitarjonta-ja-kurssipaikan-varaus/master/documentation/tietokantakaavio.png)
 
-Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Kurssin aika on tarkoituksella merkkijonomuotoinen, jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake sekä varauksen maksettu-sarake pitäisivät olla boolean, mutta ne ovat sovelluksessa nyt merkkijonoja, jotta niihin saadaan arvot "kyllä" ja "ei". Account-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, en jaksanut korjata sitä sillä pelkäsin sovelluksen rikkoutuvan.
+Tietokantakaavio kuvastaa sovelluksen nykyistä toiminnallisuutta. Kurssin aika on tarkoituksella merkkijonomuotoinen, jotta siihen voi kirjoittaa esim. "kevät 2019". Kurssin täynnä-sarake sekä varauksen maksettu-sarake pitäisivät olla boolean, mutta ne ovat sovelluksessa nyt merkkijonoja, jotta niihin saadaan arvot "kyllä" ja "ei". User (sovelluksessa account)-taulu on nyt kömpelösti englanniksi kun muut ovat suomeksi, en jaksanut korjata sitä sillä pelkäsin sovelluksen rikkoutuvan.
 
 #### Create table-lauseet:
 
@@ -10,7 +10,7 @@ CREATE TABLE aihepiiri (
 	id INTEGER NOT NULL,   
 	nimi VARCHAR(144) NOT NULL,   
 	PRIMARY KEY (id)  
-)  
+);  
 
 
 CREATE TABLE kurssi (  
@@ -22,7 +22,7 @@ CREATE TABLE kurssi (
 	maksimikoko INTEGER,   
 	taynna VARCHAR(144),    
 	PRIMARY KEY (id)  
-)  
+);  
 
 CREATE TABLE account (  
 	id INTEGER NOT NULL,   
@@ -30,7 +30,7 @@ CREATE TABLE account (
 	password VARCHAR(144) NOT NULL,   
 	admin BOOLEAN NOT NULL,   
 	PRIMARY KEY (id),   
-)  
+);  
 
 CREATE TABLE varaus (  
 	account_id INTEGER NOT NULL,   
@@ -39,7 +39,7 @@ CREATE TABLE varaus (
 	PRIMARY KEY (account_id, kurssi_id),   
 	FOREIGN KEY(account_id) REFERENCES account (id),   
 	FOREIGN KEY(kurssi_id) REFERENCES kurssi (id)   
-)  
+);  
 
 #### SQL-kyselyitä
 
