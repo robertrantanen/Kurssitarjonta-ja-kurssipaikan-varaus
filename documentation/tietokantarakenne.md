@@ -64,7 +64,7 @@ LEFT JOIN Aihepiiri ON Kurssi.aihepiiri_id = Aihepiiri.id
 WHERE (Aihepiiri.id = :id)   
 GROUP BY Kurssi.id, Kurssi.nimi;   
 
--GROUP BY-ehdot johtuvat herokun vaatimuksista. Uuden käyttäjän, kurssin, aihepiirin tai varauksen luominen tapahtuu suoraviivaisesti INSERT INTO-kyselyillä:
+-Useat GROUP BY-ehdot johtuvat herokun vaatimuksista. Uuden käyttäjän, kurssin, aihepiirin tai varauksen luominen tapahtuu suoraviivaisesti INSERT INTO-kyselyillä:
 
 INSERT INTO account (username, password, admin) VALUES (?, ?, ?);  
 INSERT INTO aihepiiri (nimi) VALUES (?);  
@@ -93,7 +93,7 @@ ORDER BY kurssi;
 
 -Tietyn käyttäjän varatut kurssit selviävät seuraavalla omalla kyselyllä:
 
-SELECT * Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Varaus.maksettu FROM Kurssi    
+SELECT Kurssi.id, Kurssi.nimi, Kurssi.aika, Kurssi.paikka, Varaus.maksettu FROM Kurssi    
 LEFT JOIN Varaus ON Varaus.kurssi_id = Kurssi.id  
 WHERE (Varaus.account_id = ?);  
 
