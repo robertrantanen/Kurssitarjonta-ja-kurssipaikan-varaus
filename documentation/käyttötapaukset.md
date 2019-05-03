@@ -14,6 +14,13 @@
 -Tavallinen Käyttäjä voi poistaa varauksensa.  
 -Kirjautunut käyttäjä voi kirjautua ulos.  
 
+### Puutteita
+-Aihepiirejä ja kursseja voi olla duplikaatteja samoilla parametreilla.  
+-Aihepiirin poistaminen ei toimi herokussa jos siihen liittyy kursseja. Kurssit voi kuitenkin poistaa ensin, minkä jälkeen aihepiirin saa myös poistettua.   
+-Kurssit voi listata aihepiirikohtaisesti, mutta toiminnon tekeminen vie "kaikki kurssit"-välilehdelle.   
+-Varaukset voi listata kurssikohtaisesti, mutta toiminnon tekeminen vie "kaikki varaukset"-välilehdelle.   
+-Puuttuu paljon virheviestejä, kuten "kurssi on täynnä"-viesti kun yritetään varata täynnä olevaa kurssia. En saanut selville miten html-sivulle saa välitettyä viestejä, jos se ei ole form-muotoinen.   
+
 ### Toteuttamatta jääneitä toiminnallisuuksia 
 -Tietoa opettajista.  
 -Kurssiesitteet.
