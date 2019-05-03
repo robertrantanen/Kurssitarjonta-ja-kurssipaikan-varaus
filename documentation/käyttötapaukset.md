@@ -17,9 +17,11 @@
 ### Puutteita
 -Aihepiirejä ja kursseja voi olla duplikaatteja samoilla parametreilla.  
 -Aihepiirin poistaminen ei toimi herokussa jos siihen liittyy kursseja. Kurssit voi kuitenkin poistaa ensin, minkä jälkeen aihepiirin saa myös poistettua.   
--Kurssit voi listata aihepiirikohtaisesti, mutta toiminnon tekeminen vie "kaikki kurssit"-välilehdelle.   
--Varaukset voi listata kurssikohtaisesti, mutta toiminnon tekeminen vie "kaikki varaukset"-välilehdelle.   
+-Kurssit voi listata aihepiirikohtaisesti, mutta jonkin kurssin toiminnon tekeminen vie "kaikki kurssit"-välilehdelle.   
+-Varaukset voi listata kurssikohtaisesti, mutta varauksen poistaminen vie "kaikki varaukset"-välilehdelle.   
 -Puuttuu paljon virheviestejä, kuten "kurssi on täynnä"-viesti kun yritetään varata täynnä olevaa kurssia. En saanut selville miten html-sivulle saa välitettyä viestejä, jos se ei ole form-muotoinen.   
+-Käyttäjänimet ja salasanat voivat olla yhden merkin pituisia, mikä on varmaankin epämieluista.   
+-Kurssin muokkaamisessa aihepiirivalikko valittaa "not a valid choise" vaikka sen voi jättää ennalleen. En myöskään keksinyt miten kyseisen viestin voisi muuttaa suomenkieliseksi niin kuin muut viestit.   
 
 ### Toteuttamatta jääneitä toiminnallisuuksia 
 -Tietoa opettajista.  
